@@ -55,6 +55,23 @@ function lookupLocation(search) {
         })
 
       displayWeather(myData);
+
+      recentLocations.unshift(myData);
+
+if (recentLocations.length > 5) {
+  recentLocations.pop();
+}
+
+const recentLocationList = document.getElementById('recent-locations');
+recentLocationList.innerHTML = '';
+
+for (let i = 0; i < recentLocations.length; i++) {
+  const recentLocation = recentLocations[i];
+  const newLocation = document.createElement('div');
+  newLocation.textContent = `${recentLocation.name}, ${recentLocation.country}`;
+  recentLocationList.appendChild(newLocation);
+}
+      
     })
 }
 
