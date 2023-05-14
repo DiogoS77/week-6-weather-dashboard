@@ -52,8 +52,52 @@ function lookupLocation(search) {
           displayCurrentWeather(data);
 
           displayWeatherForecast(data);
-        });
+        })
 
       displayWeather(myData);
-    });
+    })
+}
+
+function displayCurrentWeather(weatherData) {
+  const { temp, wind_speed, humidity, uvi } = weatherData.current;
+
+  document.getElementById("temp_value").textContent = `${temp}°`;
+  document.getElementById("wind_value").textContent = `${wind_speed}MPH`;
+  document.getElementById("humid_value").textContent = `${humidity}%`;
+  document.getElementById("uvi_value").textContent = `${uvi}`;
+}
+
+function displayWeatherForecast(weatherData) {
+  const dailyData = weatherData.daily;
+  const forecastContainer = document.getElementById('forecast');
+  forecastContainer.style.display = 'block';
+  const forecastList = document.getElementById('forecast-days');
+
+  forecastList.innerHTML = '';
+
+  for (let i = 0; i < MAX_DAILY_FORECAST; i++) {
+    const dailyForecast = dailyData[i];
+    const day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB', { weekday: 'long' });
+    const temp = `${dailyForecast.temp.day}°`;
+    const humidity = `${dailyForecast.humidity}%`;
+    const wind = `${dailyForecast.wind_speed}MPH`;
+
+    const newForecast = document.createElement('div');
+    newForecast.classList.add('forecast-day');
+    newForecast.innerHTML = `<div class="weather-info">
+    <div class="date">
+    <span>${day}</span>
+    </div>
+    <div class="temperature">
+    <span>${temp}</span>
+    </div>
+    <div class="wind">
+    <span>${wind}</span>
+    </div>
+    <div class="humidity">
+    <span>${humidity}</span>
+    </div>
+    </div>`;
+    forecastList.appendChild(newForecast);
+  }
 }
