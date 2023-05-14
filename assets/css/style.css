@@ -1,0 +1,164 @@
+/* Reset some default styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Apply some basic styles to the body */
+  
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+    background-color: #f5f5f5;
+  }
+  
+  /* Center the main content vertically and horizontally */
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Style the header */
+  
+  header {
+    background-color: #2196f3;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  /* Style the aside section */
+  
+  aside {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-right: 1rem;
+    min-width: 300px;
+  }
+  
+  .search-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-section input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-section button {
+    padding: 0.5rem 1rem;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .recent-section {
+    margin-top: 1rem;
+  }
+  
+  .recent-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .recent-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .recent-section li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .recent-section a {
+    color: #2196f3;
+  }
+  
+  /* Style the weather section */
+  
+  #weather {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .weather-icon {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .weather-location {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .weather-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    background-color: blue;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-align: center;
+  }
+  
+  .temperature,
+  .wind,
+  .humidity,
+  .uv-index {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .temperature span,
+  .wind span,
+  .humidity span,
+  .uv-index span {
+    font-weight: bold;
+  }
+  
+  /* Style the forecast section */
+  
+  #forecast {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0
+  }

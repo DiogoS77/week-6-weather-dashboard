@@ -101,3 +101,33 @@ function displayWeatherForecast(weatherData) {
     forecastList.appendChild(newForecast);
   }
 }
+
+const getWeather = (lat, lon) => {
+
+  var apiUrl = `${WEATHER_API_BASE_URL}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`;
+  console.log(apiUrl);
+  fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+
+    console.log(data);
+
+    displayCurrentWeather(data);
+
+    displayWeatherForecast(data);
+
+  })
+
+}
+
+const displayWeather = (weatherData) => {
+   document.getElementById('location-name').textContent = `${weatherData.name}, ${weatherData.country}`;
+
+   getWeather(weatherData.lat, weatherData.lon);
+
+}
+
+const locationInput = document.getElementById('location');
+const searchButton = document.getElementById('search');
+
+searchButton.addEventListener('click', getLocation);
