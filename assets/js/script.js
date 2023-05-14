@@ -56,23 +56,30 @@ function lookupLocation(search) {
 
       displayWeather(myData);
 
-      recentLocations.unshift(myData);
-
-if (recentLocations.length > 5) {
-  recentLocations.pop();
-}
-
-const recentLocationList = document.getElementById('recent-locations');
-recentLocationList.innerHTML = '';
-
-for (let i = 0; i < recentLocations.length; i++) {
-  const recentLocation = recentLocations[i];
-  const newLocation = document.createElement('div');
-  newLocation.textContent = `${recentLocation.name}, ${recentLocation.country}`;
-  recentLocationList.appendChild(newLocation);
-}
-      
+      addToSearchHistory(myData);
     })
+}
+
+function addToSearchHistory(location) {
+  recentLocations.unshift(location);
+
+  localStorage.setItem('recentLocations', JSON.stringify(recentLocations));
+
+  renderSearchHistory();
+}
+
+function renderSearchHistory() {
+  const recentList = document.getElementById("recent-location");
+  recentList.innerHTML = "";
+  for (let i = 0; i < recentLocations.length; i++) {
+    const location = recentLocations[i];
+    const listItem = document.createElement("button");
+    listItem.textContent = `${location.name}, ${location.country}`;
+    listItem.addEventListener("click", function () {
+      lookupLocation(listItem.textContent);
+    });
+    recentList.appendChild(listItem);
+  }
 }
 
 function displayCurrentWeather(weatherData) {
