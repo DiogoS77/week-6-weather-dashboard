@@ -26,3 +26,34 @@ function setLocationError(text) {
 
   setTimeout(clearError, 3000);
 }
+
+function lookupLocation(search) {
+  const apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
+
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+
+      const { name, country, lat, lon } = data[0];
+
+      const myData = { name, country, lat, lon };
+
+      console.log(myData);
+
+      const weatherApiUrl = `${WEATHER_API_BASE_URL}/data/2.5/onecall?lat=${myData.lat}&lon=${myData.lon}&units=imperial&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`;
+      console.log(weatherApiUrl);
+
+      fetch(weatherApiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+
+          displayCurrentWeather(data);
+
+          displayWeatherForecast(data);
+        });
+
+      displayWeather(myData);
+    });
+}
