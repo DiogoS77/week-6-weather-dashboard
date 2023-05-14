@@ -2,8 +2,6 @@ const WEATHER_API_BASE_URL = "https://api.openweathermap.org";
 const WEATHER_API_KEY = "f23ee9deb4e1a7450f3157c44ed020e1";
 const MAX_DAILY_FORECAST = 5;
 
-let recentLocations = [];
-
 function getLocation() {
   const userLocation = locationInput.value.trim();
 
@@ -26,6 +24,18 @@ function setLocationError(text) {
 
   setTimeout(clearError, 3000);
 }
+
+let recentLocations = [];
+
+window.onload = function () {
+  const recentLocationsFromStorage = localStorage.getItem("recentLocations");
+  if (recentLocationsFromStorage) {
+    recentLocations = JSON.parse(recentLocationsFromStorage);
+    recentLocations = removeDuplicates(recentLocations);
+    recentLocations = recentLocations.slice(0, 5);
+    renderSearchHistory();
+  }
+};
 
 function lookupLocation(search) {
   const apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
@@ -62,9 +72,9 @@ function lookupLocation(search) {
 
 function addToSearchHistory(location) {
   recentLocations.unshift(location);
-
-  localStorage.setItem('recentLocations', JSON.stringify(recentLocations));
-
+  recentLocations = removeDuplicates(recentLocations);
+  recentLocations = recentLocations.slice(0, 5);
+  localStorage.setItem("recentLocations", JSON.stringify(recentLocations));
   renderSearchHistory();
 }
 
@@ -80,6 +90,10 @@ function renderSearchHistory() {
     });
     recentList.appendChild(listItem);
   }
+}
+
+function removeDuplicates(arr) {
+  return arr.filter((v, i, a) => a.findIndex((t) => t.name === v.name) === i);
 }
 
 function displayCurrentWeather(weatherData) {
