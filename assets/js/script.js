@@ -110,12 +110,12 @@ function displayWeatherForecast(weatherData) {
   const forecastContainer = document.getElementById('forecast');
   forecastContainer.style.display = 'block';
   const forecastList = document.getElementById('forecast-days');
-
+  const currentDate = dayjs().format('YYYY-MM-DD');
   forecastList.innerHTML = '';
 
   for (let i = 0; i < MAX_DAILY_FORECAST; i++) {
     const dailyForecast = dailyData[i];
-    const day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB', { weekday: 'long' });
+    const day = dayjs(dailyForecast.dt * 1000).format('DD/MM/YYYY');
     const temp = `${dailyForecast.temp.day}°`;
     const humidity = `${dailyForecast.humidity}%`;
     const wind = `${dailyForecast.wind_speed}MPH`;
