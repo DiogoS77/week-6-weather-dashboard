@@ -41,7 +41,7 @@ To use this website is pretty easy. You type a location in the box that says (En
 
 ![alt text](/assets/images/weather-dashboard.png "End Result Screenshot")
 
-Deployed Application: 
+Deployed Application: https://diogos77.github.io/week-6-weather-dashboard/ 
 
 ## License
 
