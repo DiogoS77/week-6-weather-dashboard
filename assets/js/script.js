@@ -125,7 +125,7 @@ function displayWeatherForecast(weatherData) {
   const forecastList = document.getElementById('forecast-days');
   forecastList.innerHTML = '';
 
-  for (let i = 0; i < MAX_DAILY_FORECAST; i++) {
+  for (let i = 1; i < MAX_DAILY_FORECAST; i++) {
     const dailyForecast = dailyData[i];
     const day = dayjs(dailyForecast.dt * 1000).format('DD/MM/YYYY');
     const temp = `${dailyForecast.temp.day}°`;
