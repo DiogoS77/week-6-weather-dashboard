@@ -97,13 +97,26 @@ function removeDuplicates(arr) {
 }
 
 function displayCurrentWeather(weatherData) {
-  const { temp, wind_speed, humidity, uvi } = weatherData.current;
+  const currentWeather = weatherData.current;
+  if (!currentWeather) {
+    return;
+  }
+
+  const { temp, wind_speed, humidity, uvi, weather } = currentWeather;
 
   document.getElementById("temp_value").textContent = `${temp}°`;
-  document.getElementById("wind_value").textContent = `${wind_speed}MPH`;
+  document.getElementById("wind_value").textContent = `${wind_speed} MPH`;
   document.getElementById("humid_value").textContent = `${humidity}%`;
   document.getElementById("uvi_value").textContent = `${uvi}`;
+
+  if (weather && weather.length > 0) {
+    const { icon } = weather[0];
+    const weatherIcon = document.getElementById("current-weather-icon");
+    weatherIcon.src = `https://openweathermap.org/img/w/${icon}.png`;
+    weatherIcon.alt = "Weather Icon";
+  }
 }
+
 
 function displayWeatherForecast(weatherData) {
   const dailyData = weatherData.daily;
