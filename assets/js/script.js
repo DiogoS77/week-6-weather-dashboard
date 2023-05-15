@@ -110,7 +110,6 @@ function displayWeatherForecast(weatherData) {
   const forecastContainer = document.getElementById('forecast');
   forecastContainer.style.display = 'block';
   const forecastList = document.getElementById('forecast-days');
-  const currentDate = dayjs().format('YYYY-MM-DD');
   forecastList.innerHTML = '';
 
   for (let i = 0; i < MAX_DAILY_FORECAST; i++) {
@@ -119,23 +118,28 @@ function displayWeatherForecast(weatherData) {
     const temp = `${dailyForecast.temp.day}°`;
     const humidity = `${dailyForecast.humidity}%`;
     const wind = `${dailyForecast.wind_speed}MPH`;
+    const weatherIcon = dailyForecast.weather[0].icon;
 
     const newForecast = document.createElement('div');
     newForecast.classList.add('forecast-day');
-    newForecast.innerHTML = `<div class="weather-info">
-    <div class="date">
-    <span>${day}</span>
-    </div>
-    <div class="temperature">
-    <span>${temp}</span>
-    </div>
-    <div class="wind">
-    <span>${wind}</span>
-    </div>
-    <div class="humidity">
-    <span>${humidity}</span>
-    </div>
-    </div>`;
+    newForecast.innerHTML = `
+      <div class="weather-info">
+        <div class="date">
+          <span>${day}</span>
+        </div>
+        <div class="temperature">
+          <span>${temp}</span>
+        </div>
+        <div class="wind">
+          <span>${wind}</span>
+        </div>
+        <div class="humidity">
+          <span>${humidity}</span>
+        </div>
+        <div class="weather-icon">
+          <img src="https://openweathermap.org/img/wn/${weatherIcon}.png" alt="Weather Icon">
+        </div>
+      </div>`;
     forecastList.appendChild(newForecast);
   }
 }
