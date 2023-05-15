@@ -157,7 +157,7 @@ function displayWeatherForecast(weatherData) {
           <span>${humidity}</span>
         </div>
         <div class="weather-icon">
-          <img src="https://openweathermap.org/img/wn/${weatherIcon}.png" alt="Weather Icon">
+          <img src="https://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">
         </div>
       </div>`;
     forecastList.appendChild(newForecast);
